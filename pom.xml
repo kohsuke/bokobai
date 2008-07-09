@@ -74,9 +74,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
+              <descriptor>src/assembly-all.xml</descriptor>
               <archive>
                 <manifest>
                   <mainClass>org.kohsuke.jnt.OITShell</mainClass>

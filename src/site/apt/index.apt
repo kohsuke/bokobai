@@ -1,0 +1,66 @@
+  The issue tracker in java.net has a horribe performance. The problem gets
+worse as your project starts to accumulate more and more issues.
+This negatively impact the productivity of us developers.
+
+  "Bokobai" is a tool that helps you counter-act this problem. Bokobai
+downloads issue tracker data locally, and let you perform various operations
+in a blazing performance.
+
+  The tool is still a work in progress. Your feedback would be appreciated.
+
+
+Usage
+
+  First, download <<<bokobai-VERSION-all.jar>>> from here to somewhere.
+
+  Then run the 'refresh' command to download the issues from java.net,
+  by specifying the project name as the argument:
+  
+------------------
+java -jar bokobai-1.0-all.jar refresh hudson
+------------------
+
+  When you invoke this for the first time, it will take a long time, especially
+  on a project with a large number of issues. Successive invocations will only
+  fetch diffs, so they should run comparatively faster.
+
+  One you have the local copy of issues, you can run the query, for example.
+  The following query lists all the unresolved issues in the Hudson project that contains
+  "Maven" in either its summary or description.
+
+------------------
+java -jar bokobai-1.0-all.jar search hudson "NOT status:resolved AND maven"
+#49   FEA P2 STARTED    www          (9 votes) self-contained cvs client libs
+      https://hudson.dev.java.net/issues/show_bug.cgi?id=49
+
+#205  ENH P3 NEW        www          Make branch builds more obvious
+      https://hudson.dev.java.net/issues/show_bug.cgi?id=205
+
+#217  DEF P3 VERIFIED   www          Hudson build error
+      https://hudson.dev.java.net/issues/show_bug.cgi?id=217
+
+#247  FEA P3 STARTED    www          (6 votes) Ability to define system-wide properties
+
+...
+------------------
+
+  See {{{http://lucene.apache.org/java/docs/queryparsersyntax.html}this document}} for the complete query syntax.
+
+
+Plans
+
+  * Interactive text shell with completion, with {{{http://jline.sourceforge.net/}JLine}}.
+  
+  * Document all the available fields in the search index.
+
+  * Asynchronous updates to issues.
+
+  * Allow the user to specify sort axis for search.
+  
+  * Dump specified issues.
+  
+  * Named search.
+  
+  * Wrap this up in IDE plugin
+  
+  []
