@@ -10,10 +10,10 @@
     <menu name="Bokobai">
       <item name="Overview" href="index.html"/>
       <item name="Source code" href="nonav/xref/"/>
-      <item name="Download" href="http://maven.dyndns.org/2/org/kohsuke//"/>
+      <item name="Download" href="http://maven.dyndns.org/2/org/kohsuke/bokobai/"/>
 
       <item name="Mailing lists" href="servlets/ProjectMailingListList"/>
-      <item name="Source code" href="source/browse/trunk/winp/"/>
+      <item name="Source code" href="source/browse/trunk/bokobai/"/>
       <item name="Issues" href="servlets/ProjectIssues"/>
     </menu>
     ${reports}
