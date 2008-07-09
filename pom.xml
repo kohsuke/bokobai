@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>javanettasks</groupId>
-  <artifactId>offline-issuetracker</artifactId>
+  <artifactId>bokobai</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>offline-issuetracker</name>
@@ -11,7 +11,7 @@
     <dependency>
       <groupId>javanettasks</groupId>
       <artifactId>javanettasks</artifactId>
-      <version>1.0.17-SNAPSHOT</version>
+      <version>1.0.17</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
