@@ -26,7 +26,9 @@ public class OITShell {
 
     private static void refresh(List<String> argsList) throws ProcessingException, IOException {
         OfflineIssueTracker oit = new OfflineIssueTracker(JavaNet.connectAnonymously().getProject(argsList.get(0)));
+        System.out.println("Fetching updates");
         oit.refresh();
+        System.out.println("Updating search index");
         oit.buildSearchIndex();
     }
 

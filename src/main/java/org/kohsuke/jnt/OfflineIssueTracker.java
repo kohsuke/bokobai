@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.AbstractList;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 /**
@@ -116,8 +117,11 @@ public class OfflineIssueTracker {
 
     /**
      * Connects to java.net and updates the local cache.
+     *
+     * @return
+     *      List of {@link JNIssue}s that were updated.
      */
-    public void refresh() throws ProcessingException, IOException {
+    public Collection<JNIssue> refresh() throws ProcessingException, IOException {
         Map<Integer,JNIssue> issues;
 
         File timestamp = new File(home, ".last-updated");
@@ -153,6 +157,8 @@ public class OfflineIssueTracker {
         }
 
         issueList = reloadIndex();
+
+        return issues.values();
     }
 
     /**
