@@ -11,7 +11,8 @@ in a blazing performance.
 
 Usage
 
-  First, download <<<bokobai-VERSION-all.jar>>> from here to somewhere.
+  First, download <<<bokobai-VERSION-all.jar>>> from
+  {{{http://maven.dyndns.org/2/org/kohsuke/bokobai/}here}}.
 
   Then run the 'refresh' command to download the issues from java.net,
   by specifying the project name as the argument:
