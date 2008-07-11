@@ -68,6 +68,7 @@ public class IssueDocument {
         b.addHeader("priority",issue.getPriority());
 
         StringBuilder buf = new StringBuilder();
+        buf.append(issue.getShortDescription()).append("\n");
         for (Description d : issue.getDescriptions()) {
             if(buf.length()>0)  buf.append("\n\n\n");
             buf.append(d.getText());
