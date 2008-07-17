@@ -57,10 +57,10 @@ public class IssueDocument {
         b.addHeader("version",issue.getVersion().getName());
         b.addHeader("status",issue.getStatus());
         b.addHeader("created",issue.getCreationDate().getTime());
-        b.addHeader("lastModified",issue.getLastModified().getTime());
+        b.addHeader("lastmodified",issue.getLastModified().getTime());
         b.addHeader("summary",issue.getShortDescription(),Index.TOKENIZED);
         b.addHeader("component",issue.getComponent());
-        b.addHeader("subComponent",issue.getSubComponent());
+        b.addHeader("subcomponent",issue.getSubComponent());
         b.addHeader("assignedTo",issue.getAssignedTo());
         // do the tokenization, which will run the text through NumberTokenizer below
         b.addHeader("id",issue.getId());
