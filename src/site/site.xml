@@ -9,7 +9,7 @@
   <body>
     <menu name="Bokobai">
       <item name="Overview" href="index.html"/>
-      <item name="Source code" href="nonav/xref/"/>
+      <item name="Source code" href="/source/browse/bokobai/trunk/bokobai/"/>
       <item name="Download" href="http://maven.dyndns.org/2/org/kohsuke/bokobai/"/>
 
       <item name="Mailing lists" href="servlets/ProjectMailingListList"/>
