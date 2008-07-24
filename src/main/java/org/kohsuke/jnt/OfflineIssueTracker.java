@@ -228,7 +228,7 @@ public class OfflineIssueTracker {
         long start = System.currentTimeMillis();
 
         File indexDir = new File(home, "lucene-index");
-        IndexWriter writer = new IndexWriter(indexDir, IssueDocument.ISSUE_ANALYZER, !indexDir.exists());
+        IndexWriter writer = new IndexWriter(indexDir, IssueDocument.ISSUE_ANALYZER, true);
         for (JNIssue issue : getAll())
             writer.updateDocument(new Term("id",""+issue.getId()),IssueDocument.create(issue));
         writer.optimize();
