@@ -5,6 +5,7 @@ import org.apache.lucene.queryParser.ParseException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * Text-based shell for accessing offline issue tracker capability.
@@ -22,6 +23,10 @@ public class OITShell {
         if(args[0].equals("search")) {
             search(argsList);
         }
+
+        if(args[0].equals("list")) {
+            list(argsList);
+        }
     }
 
     private static void refresh(List<String> argsList) throws ProcessingException, IOException {
@@ -37,25 +42,43 @@ public class OITShell {
         OfflineIssueTracker oit = new OfflineIssueTracker(JavaNet.connectAnonymously().getProject(projectName));
         for (String a : argsList.subList(1,argsList.size())) {
             List<JNIssue> hits = oit.search(a);
-            int subComponentWidth = maxSubComponentLen(hits);
-            for (JNIssue issue : hits) {
-                int votes = issue.getVotes();
-                System.out.printf("%s#%-4s %s %s %s\t%-"+subComponentWidth+"s %s%s%s\n",
-                        color(issue),
-                        issue.getId(),
-                        issue.getType().name().toUpperCase().substring(0,3),
-                        issue.getPriority(),
-                        issue.getStatus(),
-                        issue.getSubComponent(),
-                        votes==0?"":"("+votes+" votes) ",
-                        issue.getShortDescription(),
-                        REVERT);
-                System.out.printf("      https://%s.dev.java.net/issues/show_bug.cgi?id=%s\n\n",
-                        projectName,
-                        issue.getId());
-            }
-            System.out.printf("%d hits\n",hits.size());
+            print(hits);
         }
+    }
+
+    private static void print(List<JNIssue> hits) {
+        int subComponentWidth = maxSubComponentLen(hits);
+        for (JNIssue issue : hits) {
+            int votes = issue.getVotes();
+            System.out.printf("%s#%-4s %s %s %s\t%-" + subComponentWidth + "s %s%s%s\n",
+                    color(issue),
+                    issue.getId(),
+                    issue.getType().name().toUpperCase().substring(0, 3),
+                    issue.getPriority(),
+                    issue.getStatus(),
+                    issue.getSubComponent(),
+                    votes == 0 ? "" : "(" + votes + " votes) ",
+                    issue.getShortDescription(),
+                    REVERT);
+            System.out.printf("      https://%s.dev.java.net/issues/show_bug.cgi?id=%s\n\n",
+                    issue.getProject().getName(),
+                    issue.getId());
+        }
+        System.out.printf("%d hits\n",hits.size());
+    }
+
+    /**
+     * List unresolved items.
+     */
+    private static void list(List<String> argsList) throws ProcessingException, IOException {
+        OfflineIssueTracker oit = new OfflineIssueTracker(JavaNet.connectAnonymously().getProject(argsList.get(0)));
+        List<JNIssue> all = oit.getAll();
+        for (Iterator<JNIssue> itr = all.iterator(); itr.hasNext();) {
+            JNIssue issue = itr.next();
+            if(!issue.getStatus().needsWork)
+                itr.remove();
+        }
+        print(all);
     }
 
     private static int maxSubComponentLen(List<JNIssue> hits) {
