@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.AbstractList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 /**
@@ -112,6 +114,11 @@ public class OfflineIssueTracker {
         List<JNIssue> r = new ArrayList<JNIssue>();
         for (Integer id : issueList)
             r.add(get(id));
+        Collections.sort(r,new Comparator<JNIssue>() {
+            public int compare(JNIssue o1, JNIssue o2) {
+                return o1.getId()-o2.getId();
+            }
+        });
         return r;
     }
 
