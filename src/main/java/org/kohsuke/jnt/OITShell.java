@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Text-based shell for accessing offline issue tracker capability.
@@ -38,10 +39,23 @@ public class OITShell {
     }
 
     private static void search(List<String> argsList) throws ProcessingException, IOException, ParseException {
+        boolean all = false;
+        if(argsList.get(0).equals("-all")) {
+            all = true;
+            argsList = argsList.subList(1,argsList.size());
+        }
         String projectName = argsList.get(0);
         OfflineIssueTracker oit = new OfflineIssueTracker(JavaNet.connectAnonymously().getProject(projectName));
         for (String a : argsList.subList(1,argsList.size())) {
             List<JNIssue> hits = oit.search(a);
+            if(!all) {
+                List<JNIssue> newList = new ArrayList<JNIssue>();
+                for (JNIssue hit : hits) {
+                    if(hit.getResolution()==null)
+                        newList.add(hit);
+                }
+                hits = newList;
+            }
             print(hits);
         }
     }
