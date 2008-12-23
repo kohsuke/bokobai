@@ -134,9 +134,10 @@ public class OfflineIssueTracker {
         File timestamp = new File(home, ".last-updated");
         long now = System.currentTimeMillis();
         if(timestamp.exists()) {
-            // fetch new files
-            LOGGER.fine("Fetching issues updated since "+new Date(now));
-            issues = project.getIssueTracker().getUpdatedIssues(new Date(timestamp.lastModified()));
+            long t = timestamp.lastModified()-24L*60*60*1000;
+            LOGGER.fine("Fetching issues updated since "+new Date(t));
+            // fetch new files. let's be bit conservative here since I don't know how the server handles timezones
+            issues = project.getIssueTracker().getUpdatedIssues(new Date(t));
         } else {
             // fetch all
             LOGGER.fine("Fetching all issues");
