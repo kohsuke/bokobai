@@ -188,8 +188,12 @@ public class OfflineIssueTracker {
         }
 
         Hits search(String queryString) throws ParseException, IOException {
+            return search(queryString,"id");
+        }
+
+        Hits search(String queryString,String sortField) throws ParseException, IOException {
             Query query = parser.parse(queryString);
-            return searcher.search(query,new Sort("id"));
+            return searcher.search(query,new Sort(sortField));
         }
     }
 
@@ -201,11 +205,11 @@ public class OfflineIssueTracker {
      * See http://lucene.apache.org/java/docs/queryparsersyntax.html for
      * the details.
      */
-    public List<JNIssue> search(String queryString) throws ParseException, IOException {
+    public List<JNIssue> search(String queryString, String sortField) throws ParseException, IOException {
         Searcher s = searcher;
         if(s==null)
             s = searcher = new Searcher();
-        final Hits hits = s.search(queryString);
+        final Hits hits = s.search(queryString,sortField);
         return new AbstractList<JNIssue>() {
             public JNIssue get(int index) {
                 try {

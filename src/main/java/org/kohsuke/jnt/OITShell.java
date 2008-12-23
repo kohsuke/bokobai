@@ -40,14 +40,19 @@ public class OITShell {
 
     private static void search(List<String> argsList) throws ProcessingException, IOException, ParseException {
         boolean all = false;
+        String sortBy = "id";
         if(argsList.get(0).equals("-all")) {
             all = true;
             argsList = argsList.subList(1,argsList.size());
         }
+        if(argsList.get(0).equals("-sort")) {
+            sortBy = argsList.get(1);
+            argsList = argsList.subList(2,argsList.size());
+        }
         String projectName = argsList.get(0);
         OfflineIssueTracker oit = new OfflineIssueTracker(JavaNet.connectAnonymously().getProject(projectName));
         for (String a : argsList.subList(1,argsList.size())) {
-            List<JNIssue> hits = oit.search(a);
+            List<JNIssue> hits = oit.search(a,sortBy);
             if(!all) {
                 List<JNIssue> newList = new ArrayList<JNIssue>();
                 for (JNIssue hit : hits) {
