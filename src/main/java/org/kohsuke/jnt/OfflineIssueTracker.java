@@ -5,6 +5,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser.Operator;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
@@ -185,6 +186,7 @@ public class OfflineIssueTracker {
             parser.addIntField("votes");
             parser.addIntField("id");
             parser.addIntField("priority");
+            parser.setDefaultOperator(Operator.AND);
         }
 
         Hits search(String queryString) throws ParseException, IOException {
