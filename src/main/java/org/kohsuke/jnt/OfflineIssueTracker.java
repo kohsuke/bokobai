@@ -195,6 +195,7 @@ public class OfflineIssueTracker {
 
         Hits search(String queryString,String sortField) throws ParseException, IOException {
             Query query = parser.parse(queryString);
+            System.out.println("Searching "+query);
             return searcher.search(query,new Sort(sortField));
         }
     }
