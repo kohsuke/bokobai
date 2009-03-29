@@ -5,6 +5,7 @@ import org.apache.lucene.analysis.KeywordTokenizer;
 import org.apache.lucene.analysis.PerFieldAnalyzerWrapper;
 import org.apache.lucene.analysis.Token;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.KeywordAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
@@ -118,6 +119,7 @@ public class IssueDocument {
         a.addAnalyzer("votes",new NumberAnalyzer());
         a.addAnalyzer("id",new NumberAnalyzer());
         a.addAnalyzer("priority",new NumberAnalyzer());
+        a.addAnalyzer("subcomponent",new KeywordAnalyzer());
         ISSUE_ANALYZER = a;
     }
 }
