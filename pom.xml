@@ -10,7 +10,7 @@
     <dependency>
       <groupId>javanettasks</groupId>
       <artifactId>javanettasks</artifactId>
-      <version>1.0.17</version>
+      <version>1.0.22</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
