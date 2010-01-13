@@ -3,11 +3,11 @@ package org.kohsuke.jnt;
 import org.apache.lucene.queryParser.ParseException;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Text-based shell for accessing offline issue tracker capability.

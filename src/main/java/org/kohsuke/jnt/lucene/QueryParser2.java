@@ -1,15 +1,15 @@
 package org.kohsuke.jnt.lucene;
 
-import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.queryParser.CharStream;
-import org.apache.lucene.queryParser.QueryParserTokenManager;
-import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.search.Query;
+import org.apache.lucene.queryParser.CharStream;
+import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.queryParser.QueryParserTokenManager;
 import org.apache.lucene.search.ConstantScoreRangeQuery;
+import org.apache.lucene.search.Query;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Runs {@link #getRangeQuery(String, String, String, boolean)} through
