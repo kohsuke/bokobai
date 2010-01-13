@@ -1,6 +1,7 @@
 package org.kohsuke.jnt;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
@@ -10,7 +11,6 @@ import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
-import org.apache.lucene.document.Document;
 import org.kohsuke.jnt.lucene.QueryParser2;
 
 import java.io.BufferedOutputStream;
@@ -20,17 +20,17 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.AbstractList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 /**
@@ -48,9 +48,13 @@ public class OfflineIssueTracker {
     private final Map<Integer,JNIssue> cache = new Hashtable<Integer,JNIssue>();
 
     public OfflineIssueTracker(JNProject project) {
+        this(new File(new File(System.getProperty("user.home")),".java.net.offline-issue-tracker"),project);
+    }
+
+    public OfflineIssueTracker(File home, JNProject project) {
         this.project = project;
-        home = new File(new File(System.getProperty("user.home")),".java.net.offline-issue-tracker/"+project.getName());
-        home.mkdirs();
+        this.home = new File(home,project.getName());
+        this.home.mkdirs();
         issueList = reloadIndex();
     }
 
