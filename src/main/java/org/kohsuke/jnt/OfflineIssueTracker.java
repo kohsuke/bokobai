@@ -48,8 +48,12 @@ public class OfflineIssueTracker {
     private final Map<Integer,JNIssue> cache = new Hashtable<Integer,JNIssue>();
 
     public OfflineIssueTracker(JNProject project) {
+        this(new File(new File(System.getProperty("user.home")),".java.net.offline-issue-tracker"),project);
+    }
+
+    public OfflineIssueTracker(File home, JNProject project) {
         this.project = project;
-        home = new File(new File(System.getProperty("user.home")),".java.net.offline-issue-tracker/"+project.getName());
+        this.home = new File(home,project.getName());
         home.mkdirs();
         issueList = reloadIndex();
     }
