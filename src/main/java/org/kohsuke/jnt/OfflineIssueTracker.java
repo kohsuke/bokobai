@@ -54,7 +54,7 @@ public class OfflineIssueTracker {
     public OfflineIssueTracker(File home, JNProject project) {
         this.project = project;
         this.home = new File(home,project.getName());
-        home.mkdirs();
+        this.home.mkdirs();
         issueList = reloadIndex();
     }
 
