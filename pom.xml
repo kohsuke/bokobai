@@ -3,14 +3,14 @@
   <groupId>org.kohsuke</groupId>
   <artifactId>bokobai</artifactId>
   <packaging>jar</packaging>
-  <version>1.3-SNAPSHOT</version>
+  <version>1.3</version>
   <name>offline-issuetracker</name>
 
   <dependencies>
     <dependency>
       <groupId>javanettasks</groupId>
       <artifactId>javanettasks</artifactId>
-      <version>1.0.22</version>
+      <version>1.0.28</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
@@ -31,8 +31,8 @@
   </dependencies>
 
   <scm>
-    <connection>scm:svn:https://svn.dev.java.net/svn/bokobai/trunk/bokobai/</connection>
-    <developerConnection>scm:svn:https://svn.dev.java.net/svn/bokobai/trunk/bokobai/</developerConnection>
+    <connection>scm:svn:https://svn.dev.java.net/svn/bokobai/tags/bokobai-1.3</connection>
+    <developerConnection>scm:svn:https://svn.dev.java.net/svn/bokobai/tags/bokobai-1.3</developerConnection>
   </scm>
 
   <distributionManagement>
